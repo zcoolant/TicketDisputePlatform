@@ -1,0 +1,7 @@
+export AboutPage from './AboutPage/AboutPage'
+export App from './App/App'
+export Header from './Header/Header'
+export HomePage from './HomePage/HomePage'
+export CasePage from './CasePage/CasePage'
+export LoginPage from './LoginPage/LoginPage'
+export NotFoundPage from './NotFoundPage/NotFoundPage'
