@@ -1,5 +1,7 @@
 import React from 'react'
-import { HeaderContainer } from '../../containers'
+import Header from '../Header/Header'
+import { connect } from 'react-redux'
+import { checkLogin } from '../../actions'
 
 class App extends React.Component {
   constructor(props) {
@@ -8,10 +10,17 @@ class App extends React.Component {
   }
 
   render() {
+
+    const style = {
+      'padding-top': '70px'
+    };
+
     return(
       <div>
-        <HeaderContainer />
-        {this.props.children}
+        <Header />
+        <div className='container' style={style}>
+          {this.props.children}
+        </div>
       </div>
     )
   }
@@ -22,4 +31,15 @@ App.propTypes = {
   checkLogin: React.PropTypes.func.isRequired
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkLogin: () => dispatch(checkLogin())
+  }
+}
+
+export default connect(
+  null, // no mapStateToProps
+  mapDispatchToProps
+)(App)
+
+

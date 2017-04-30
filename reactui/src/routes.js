@@ -1,15 +1,27 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import { AppContainer, EnsureLoggedInContainer } from './containers'
-import { HomePage, CasePage, AboutPage, NotFoundPage, LoginPage} from './components'
+import {
+  App,
+  HomePage,
+  CaseContainer,
+  CaseIndex,
+  NewCasePage,
+  CaseDetail,
+  AboutPage,
+  NotFoundPage,
+  LoginPage
+} from './components'
 
 export default function createRoutes() {
   return (
-    <Route path='/' component={AppContainer}>
+    <Route path='/' component={App}>
       <IndexRoute component={HomePage}/>
-      <Route component={EnsureLoggedInContainer}>
-        <Route path='/case' component={CasePage}/>
+      <Route path='/case' component={CaseContainer}>
+        <IndexRoute component={CaseIndex}/>
+        <Route path='all' component={CaseIndex}/>
+        <Route path='new' component={NewCasePage}/>
+        <Route path='detail' component={CaseDetail}/>
       </Route>
       <Route path='/login' component={LoginPage}/>
       <Route path='/about' component={AboutPage}/>

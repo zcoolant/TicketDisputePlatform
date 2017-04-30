@@ -1,17 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react'
-//import { browserHistory } from 'react-router'
 
 class EnsureLoggedInContainer extends React.Component {
-  //
-  // componentDidMount() {
-  //   const { isAuthenticated } = this.props
-  //
-  //   if (!isAuthenticated) {
-  //     browserHistory.replace('/login')
-  //   }
-  // }
-
   render() {
     const { isAuthenticated } = this.props
 

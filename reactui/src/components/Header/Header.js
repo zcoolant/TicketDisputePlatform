@@ -1,37 +1,55 @@
 import React from 'react'
 import { Link } from 'react-router'
 import {Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+import { connect } from 'react-redux'
+import { loginRequest, logoutSuccess } from '../../actions'
 
 const Header = ({ isAuthenticated, profile, onLoginClick, onLogoutClick }) => {
   return (
-    <Navbar inverse>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a href="#">TicketDisputer</a>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav>
-          <NavItem eventKey={1} href="#"><Link to='/'>Home</Link></NavItem>
-          <NavItem eventKey={2} href="#"><Link to='/about'>About</Link></NavItem>
-
-        </Nav>
-        <Nav pullRight>
-          {!isAuthenticated ?
-            (<NavItem eventKey={1} onClick={onLoginClick}>Login</NavItem>) :
-            (
-              <NavDropdown eventKey={3} title={<img src={profile.picture} height="28px"/>} id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>My cases</MenuItem>
-                <MenuItem eventKey={3.2}>New Case</MenuItem>
-                <MenuItem eventKey={3.3}>Profile</MenuItem>
-                <MenuItem divider/>
-                <MenuItem eventKey={3.4} onClick={onLogoutClick}>Logout</MenuItem>
-              </NavDropdown>)
-          }
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>)
+    <div>
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"/>
+              <span className="icon-bar"/>
+              <span className="icon-bar"/>
+            </button>
+            <a className="navbar-brand" href="#">TicketDisputer</a>
+          </div>
+          <div id="navbar" className="navbar-collapse collapse">
+            <ul className="nav navbar-nav">
+              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/about'>About</Link></li>
+              <li><Link to='/contact'>Contact</Link></li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
+              {!isAuthenticated ?
+                (<li><a onClick={onLoginClick} href='#'>Login</a></li>) :
+                (
+                  <li className="dropdown">
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <img src={profile.picture} height="20px"/> <span className="caret"/>
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li><Link to='/case/all'>My Cases</Link></li>
+                      <li><Link to='/case/new'>New Case</Link></li>
+                      <li><Link to='/profile'>Profile</Link></li>
+                      <li role="separator" className="divider"/>
+                      <li><a onClick={onLogoutClick}>Logout</a></li>
+                    </ul>
+                  </li>
+                )
+              }
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  )
 }
 
 Header.propTypes = {
@@ -42,4 +60,23 @@ Header.propTypes = {
   onLogoutClick: React.PropTypes.func.isRequired
 }
 
-export default Header
+const mapStateToProps = (state) => {
+  const { isAuthenticated, profile, error } = state.auth
+  return {
+    isAuthenticated,
+    profile,
+    error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginClick: () => dispatch(loginRequest()),
+    onLogoutClick: () => dispatch(logoutSuccess())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)

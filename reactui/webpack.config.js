@@ -34,6 +34,11 @@ module.exports = {
     new DotenvPlugin({
       sample: './.env.example',
       path: './.env'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      jquery: "jquery"
     })
   ],
   module: {
@@ -64,8 +69,12 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style!css?importLoaders=1!postcss'
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
-    ]
+]
   },
   postcss: [
     require('autoprefixer')
