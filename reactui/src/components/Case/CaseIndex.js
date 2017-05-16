@@ -12,7 +12,7 @@ class CasesIndex extends Component {
     return this.props.myCases.map((myCase) => {
       return (
         <li className="list-group-item" key={myCase.id}>
-          <Link to={"case/" + myCase.id}>
+          <Link to={"/case/" + myCase.id}>
             <span className="pull-xs-right">{myCase.categories}</span>
             <strong>{myCase.title}</strong>
           </Link>

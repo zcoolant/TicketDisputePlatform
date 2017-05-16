@@ -6,7 +6,7 @@ import {
   HomePage,
   CaseContainer,
   CaseIndex,
-  NewCasePage,
+  CaseNew,
   CaseDetail,
   AboutPage,
   NotFoundPage,
@@ -20,8 +20,8 @@ export default function createRoutes() {
       <Route path='/case' component={CaseContainer}>
         <IndexRoute component={CaseIndex}/>
         <Route path='all' component={CaseIndex}/>
-        <Route path='new' component={NewCasePage}/>
-        <Route path='detail' component={CaseDetail}/>
+        <Route path='new' component={CaseNew}/>
+        <Route path=':id' component={CaseDetail}/>
       </Route>
       <Route path='/login' component={LoginPage}/>
       <Route path='/about' component={AboutPage}/>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import {Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
 import { connect } from 'react-redux'
 import { loginRequest, logoutSuccess } from '../../actions'
 
@@ -18,7 +17,7 @@ const Header = ({ isAuthenticated, profile, onLoginClick, onLogoutClick }) => {
               <span className="icon-bar"/>
               <span className="icon-bar"/>
             </button>
-            <a className="navbar-brand" href="#">TicketDisputer</a>
+            <Link className="navbar-brand" to="/">TicketDisputer</Link>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchCase, deleteCase } from '../../actions/index';
 import { Link } from 'react-router';
+import {LinkContainer} from 'react-router-bootstrap'
 
 class CasesShow extends Component {
   static contextTypes = {
@@ -14,7 +15,7 @@ class CasesShow extends Component {
 
   onDeleteClick() {
     this.props.deleteCase(this.props.params.id)
-      .then(() => { this.context.router.push('/'); });
+      .then(() => { this.context.router.push('/case'); });
   }
 
   render() {
@@ -26,7 +27,11 @@ class CasesShow extends Component {
 
     return (
       <div>
-        <Link to="/">Back To Index</Link>
+        <LinkContainer to="/case">
+          <button className="btn btn-primary pull-xs-right">
+            Back
+          </button>
+        </LinkContainer>
         <button
           className="btn btn-danger pull-xs-right"
           onClick={this.onDeleteClick.bind(this)}>
@@ -48,7 +53,7 @@ CasesShow.propTypes = {
 }
 
 function mapStateToProps(state) {
-  return { myCase: state.myCases.myCase };
+  return { myCase: state.myCases.case };
 }
 
 export default connect(mapStateToProps, { fetchCase, deleteCase })(CasesShow);
