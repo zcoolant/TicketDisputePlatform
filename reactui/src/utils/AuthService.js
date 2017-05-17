@@ -8,7 +8,7 @@ export default class AuthService {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: process.env.AUTH0_CALLBACK || 'http://localhost:3000/callback',
+        redirectUrl: process.env.AUTH0_CALLBACK || 'http://localhost:3000/case',
         responseType: 'token'
       },
       // theme: {

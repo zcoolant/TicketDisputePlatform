@@ -10,7 +10,7 @@ import {
   CaseDetail,
   AboutPage,
   NotFoundPage,
-  LoginPage
+  LoginCallback
 } from './components'
 
 export default function createRoutes() {
@@ -23,8 +23,8 @@ export default function createRoutes() {
         <Route path='new' component={CaseNew}/>
         <Route path=':id' component={CaseDetail}/>
       </Route>
-      <Route path='/login' component={LoginPage}/>
       <Route path='/about' component={AboutPage}/>
+      <Route path='/callback' component={LoginCallback}/>
       <Route path='*' component={NotFoundPage}/>
     </Route>
   )

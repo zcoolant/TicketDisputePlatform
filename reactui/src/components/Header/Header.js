@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import {Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { loginRequest, logoutSuccess } from '../../actions'
 
@@ -30,11 +29,12 @@ const Header = ({ isAuthenticated, profile, onLoginClick, onLogoutClick }) => {
                 (<li><a onClick={onLoginClick} href='#'>Login</a></li>) :
                 (
                   <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <img src={profile.picture} height="20px"/> <span className="caret"/>
+                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false" style={{padding: "8px"}}>
+                      <img src={profile.picture} height="35px"/> <span className="caret"/>
                     </a>
                     <ul className="dropdown-menu">
-                      <li><Link to='/case/all'>My Cases</Link></li>
+                      <li><Link to='/case'>My Cases</Link></li>
                       <li><Link to='/case/new'>New Case</Link></li>
                       <li><Link to='/profile'>Profile</Link></li>
                       <li role="separator" className="divider"/>
@@ -57,7 +57,7 @@ Header.propTypes = {
   error: React.PropTypes.string,
   onLoginClick: React.PropTypes.func.isRequired,
   onLogoutClick: React.PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
