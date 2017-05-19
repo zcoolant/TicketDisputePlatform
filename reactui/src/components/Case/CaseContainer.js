@@ -20,12 +20,8 @@ EnsureLoggedInContainer.propTypes = {
 
 
 const mapStateToProps = (state) => {
-  const { isAuthenticated, profile, error } = state.auth
-  return {
-    isAuthenticated,
-    profile,
-    error
-  }
+  const { isAuthenticated } = state.auth;
+  return {isAuthenticated}
 }
 
 export default connect(mapStateToProps)(EnsureLoggedInContainer)

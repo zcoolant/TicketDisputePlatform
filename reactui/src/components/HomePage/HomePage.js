@@ -13,7 +13,7 @@ class HomePage extends Component{
       return (
         <div>
           <div className="jumbotron">
-            <h1>Login and submit your first case now!</h1>
+            <h1>Login and submit your first case now.</h1>
             <p>Want to dispute a ticket, we help you do it right.</p>
             <p><button className="btn btn-primary btn-lg" onClick={loginRequest}>Login</button></p>
           </div>
